@@ -1,10 +1,13 @@
 import React from "react";
 import { FaPlusCircle, FaInbox } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { deletePost } from "../redux/postsSilce";
+
 
 const PostList = () => {
   const posts = useSelector((state) => state.posts?.posts ?? []);
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -84,7 +87,7 @@ const PostList = () => {
 
                 <button
                   // keep delete logic as you had it (unmodified here)
-                  onClick={() => {}}
+                  onClick={() => dispatch(deletePost(post.id))}
                   className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-xl shadow-sm hover:bg-red-700 transition-colors"
                 >
                   Delete
